@@ -25,6 +25,7 @@ var path = require('path');
 var ROOT = path.join(__dirname, '..', '..');
 var events = require('cordova-common').events;
 var check_reqs = require('./check_reqs');
+const { build: buildCordovaJs } = require('cordova-js');
 
 // exported method to create a project, returns a promise that resolves with null
 module.exports.createProject = async function (project_path, package_name, project_name) {
@@ -69,8 +70,9 @@ module.exports.createProject = async function (project_path, package_name, proje
     var platform_www = path.join(project_path, 'platform_www');
     shell.mkdir('-p', platform_www);
 
-    // copy cordova js file to platform_www
-    shell.cp(path.join(ROOT, 'cordova-lib', 'cordova.js'), platform_www);
+    // build cordova.js file to platform_www
+    const scriptContents = await buildCordovaJs({ platformRoot: ROOT });
+    fs.writeFileSync(path.join(platform_www, 'cordova.js'), scriptContents);
 
     // copy favicon file to platform_www
     shell.cp(path.join(ROOT, 'bin/template/www/favicon.ico'), platform_www);

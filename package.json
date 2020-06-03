@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "cordova-common": "^3.1.0",
+    "cordova-js": "github:raphinesse/cordova-js#export-build-tools",
     "cordova-serve": "^3.0.0",
     "nopt": "^4.0.1",
     "shelljs": "^0.5.3"

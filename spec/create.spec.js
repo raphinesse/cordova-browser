@@ -53,6 +53,10 @@ function createAndBuild (projectname, projectid) {
     expect(fs.existsSync(path.join(tempCordovaScriptsPath, 'run'))).toBe(true);
     expect(fs.existsSync(path.join(tempCordovaScriptsPath, 'version'))).toBe(true);
 
+    // created project has cordova.js
+    const cordovaJsPath = path.join(tmpDir, projectname, 'platform_www/cordova.js');
+    expect(fs.existsSync(cordovaJsPath)).toBe(true);
+
     // // build the project
     command = util.format('"%s/cordova/build"', path.join(tmpDir, projectname));
     // shell.echo(command);
