@@ -27,7 +27,7 @@ var events = require('cordova-common').events;
 var check_reqs = require('./check_reqs');
 
 // exported method to create a project, returns a promise that resolves with null
-module.exports.createProject = function (project_path, package_name, project_name) {
+module.exports.createProject = async function (project_path, package_name, project_name) {
 /*
     // create the dest and the standard place for our api to live
     // platforms/platformName/cordova/Api.js
@@ -82,6 +82,4 @@ module.exports.createProject = function (project_path, package_name, project_nam
     // copy manifest file to platform_www
     fs.writeFileSync(path.join(platform_www, 'manifest.json'),
         JSON.stringify(manifest, null, 2), 'utf-8');
-
-    return Promise.resolve();
 };
